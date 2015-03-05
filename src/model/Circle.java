@@ -5,6 +5,8 @@
  */
 package model;
 
+import aspect.Loggable;
+
 /**
  *
  * @author fja2

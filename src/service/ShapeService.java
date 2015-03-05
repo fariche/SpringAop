@@ -5,6 +5,7 @@
  */
 package service;
 
+import aspect.Loggable;
 import model.Circle;
 import model.Triangle;
 
@@ -13,12 +14,14 @@ import model.Triangle;
  * @author fja2
  */
 public class ShapeService {
+
     private Circle circle;
     private Triangle triangle;
 
     /**
      * @return the circle
      */
+    @Loggable
     public Circle getCircle() {
         return circle;
     }

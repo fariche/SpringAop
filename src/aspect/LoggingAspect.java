@@ -5,9 +5,13 @@
  */
 package aspect;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -34,10 +38,26 @@ public class LoggingAspect {
         System.out.println("An exception has been thrown"+ ex);
     }
     
+    @Around("@annotation(aspect.Loggable)")
+    public Object myAroundAdvice(ProceedingJoinPoint proceedingJoinPoint){
+        Object returnValue = null;
+        
+        try {
+            System.out.println("Before Advice");
+            returnValue = proceedingJoinPoint.proceed();
+            System.out.println("AFter Returning");
+        } catch (Throwable ex) {
+            Logger.getLogger(LoggingAspect.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("After Throwing");
+        }
+        System.out.println("After Finally");
+    return returnValue;
+    }
+    
     @Pointcut("execution( * get*())")
     public void allGetters() {
     }
-
+    
     @Pointcut("within(model.Circle)")
     public void allCircleMethods() {
     }
