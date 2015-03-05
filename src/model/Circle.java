@@ -10,7 +10,8 @@ package model;
  * @author fja2
  */
 public class Circle {
-        private String name;
+
+    private String name;
 
     /**
      * @return the name
@@ -24,6 +25,14 @@ public class Circle {
      */
     public void setName(String name) {
         this.name = name;
+        System.out.println("Circle Setter has been called");
+        throw (new RuntimeException());
     }
-    
+
+    public String setNameAndReturn(String name) {
+        this.name = name;
+        System.out.println("Circle Setter has been called");
+        return name;
+    }
+
 }

@@ -13,7 +13,7 @@
     </bean>
 
     <bean name="circle" class="model.Circle">
-        <property name="name" value="Circle.name"/>
+       
     </bean>
     <bean name="shapeService" class="service.ShapeService" autowire="byName"/>
     <bean name="loggingAspect" class="aspect.LoggingAspect"/>
